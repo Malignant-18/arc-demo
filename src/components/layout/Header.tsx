@@ -1,107 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
 const navLinks = [
-  { name: 'About Us', path: '/about' },
-  { name: 'Activities', path: '/activities' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Team', path: '/team' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'ABOUT US', path: '/about' },
+  { name: 'ACTIVITIES', path: '/activities' },
+  { name: 'GALLERY', path: '/gallery' },
+  { name: 'TEAM', path: '/team' },
+  { name: 'CONTACT', path: '/contact' },
 ];
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-soft py-3'
-          : 'bg-transparent py-5'
-      )}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center">
-              <img 
-                src="/handshake-logo.png" 
-                alt="Alumni Connect Cell Logo"
-                className="w-6 h-6"
-              />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold leading-none text-primary-600">
-                ALUMNI CONNECT CELL
-              </h1>
-              <p className="text-xs text-gray-600 leading-tight">
-                Govt. Model Engineering College, Thrikkakara
-              </p>
-            </div>
-          </Link>
+    <header className="w-full">
+      {/* Top header with logo and login button */}
+      <div className="bg-sky-100 py-3">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden">
+                <img 
+                  src="/handshake-logo.png" 
+                  alt="Alumni Connect Cell Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h1 className="text-sm md:text-lg font-extrabold leading-none text-gray-800 font-poppins">
+                  ALUMNI
+                </h1>
+                <h1 className="text-sm md:text-lg font-extrabold leading-none text-gray-800 font-poppins">
+                  CONNECT
+                </h1>
+                <h1 className="text-sm md:text-lg font-extrabold leading-none text-gray-800 font-poppins">
+                  CELL
+                </h1>
+                <p className="text-xs text-gray-600 leading-tight">
+                  GOVT. MODEL ENGINEERING COLLEGE THRIKKAKARA
+                </p>
+              </div>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+            {/* Tablet/Desktop Login Button */}
+            <div className="hidden sm:block">
+              <Link
+                to="/auth"
+                className="px-3 py-2 md:px-6 md:py-3 rounded-xl bg-cyan-600 text-white text-xs md:text-sm font-medium hover:bg-cyan-700 transition-colors"
+              >
+                REGISTER / LOGIN
+              </Link>
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="sm:hidden p-2 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <div className="bg-cyan-500 text-white">
+        <div className="container mx-auto px-4 md:px-6 lg:px-12">
+          {/* Tablet/Desktop Navigation */}
+          <nav className="hidden sm:flex items-center justify-between py-3">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  'relative font-medium text-sm transition-colors',
+                  'px-3 py-2 md:px-6 lg:px-8 font-medium text-xs md:text-sm transition-colors text-white hover:bg-cyan-600 text-center',
                   location.pathname === link.path
-                    ? 'text-primary-700'
-                    : 'text-gray-700 hover:text-primary-600'
+                    ? 'bg-cyan-600'
+                    : ''
                 )}
               >
                 {link.name}
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
               </Link>
             ))}
-            <Link
-              to="/auth"
-              className="ml-2 px-5 py-2 rounded-full bg-secondary-600 text-white text-sm font-medium hover:bg-secondary-700 transition-colors"
-            >
-              REGISTER / LOGIN
-            </Link>
           </nav>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </div>
 
@@ -113,18 +103,18 @@ const Header: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
+            className="sm:hidden bg-cyan-500 overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
+            <div className="container mx-auto px-4 py-4 flex flex-col">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'py-2 px-4 rounded-lg font-medium',
+                    'py-2 px-4 font-medium text-white',
                     location.pathname === link.path
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-cyan-600'
+                      : 'hover:bg-cyan-600'
                   )}
                 >
                   {link.name}
@@ -132,7 +122,7 @@ const Header: React.FC = () => {
               ))}
               <Link
                 to="/auth"
-                className="py-2 px-4 rounded-lg bg-secondary-600 text-white font-medium text-center"
+                className="mt-3 py-2 px-4 bg-white text-cyan-700 font-medium text-center rounded-md"
               >
                 REGISTER / LOGIN
               </Link>

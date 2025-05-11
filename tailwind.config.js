@@ -46,6 +46,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter var', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
