@@ -156,65 +156,62 @@ const AboutPage: React.FC = () => {
         subtitle="Key milestones in the development of our alumni network"
         className="bg-gray-50"
       >
-        <div className="relative mt-12">
-          <div className="absolute inset-0 h-full w-2 bg-gray-200 left-1/2 transform -translate-x-1/2 hidden md:block"></div>
+        <div className="relative mt-12 ">
+        <div className=" inset-0 w-full left-1/2 hidden md:block">
+  
           
           {[
-            {
-              year: '2005',
-              title: 'Founding of Alumni Cell',
-              description: 'Establishment of the Alumni Connect Cell with the aim of creating a network for MEC graduates.',
-            },
-            {
-              year: '2010',
-              title: 'First Alumni Global Meet',
-              description: 'Organized the first global alumni reunion with participants from over 15 countries.',
-            },
-            {
-              year: '2015',
-              title: 'Launch of Digital Platform',
-              description: 'Introduction of the online alumni portal to facilitate better communication and networking.',
-            },
-            {
-              year: '2020',
-              title: 'Mentorship Program',
-              description: 'Initiated a structured mentorship program connecting alumni with current students.',
-            },
-            {
-              year: '2023',
-              title: 'Alumni Impact Awards',
-              description: 'Established annual awards to recognize alumni contributions in various fields.',
-            },
-          ].map((milestone, index) => (
-            <motion.div
-              key={index}
-              className={`relative md:flex items-center mb-12 ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className={`hidden md:block w-1/2 ${index % 2 === 1 ? 'md:pr-8' : 'md:pl-8 md:order-last'}`}>
-                <div className={`bg-white p-6 rounded-lg shadow-soft ${index % 2 === 0 ? 'ml-8' : 'mr-8'}`}>
-                  <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
-                  <p className="text-gray-700">{milestone.description}</p>
-                </div>
-              </div>
-              <div className="absolute h-8 w-8 rounded-full bg-primary-600 border-4 border-white left-1/2 transform -translate-x-1/2 md:flex items-center justify-center hidden">
-                <span className="text-white font-bold">{milestone.year.slice(-2)}</span>
-              </div>
-              <div className="md:hidden bg-white p-6 rounded-lg shadow-soft mb-6">
-                <div className="flex items-center mb-2">
-                  <span className="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
-                    {milestone.year}
-                  </span>
-                  <h3 className="text-xl font-semibold">{milestone.title}</h3>
-                </div>
-                <p className="text-gray-700">{milestone.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+  {
+    stage: 'I',
+    title: 'Community Formation',
+    description: 'Laying the foundation of the alumni community and gathering early members.',
+  },
+  {
+    stage: 'II',
+    title: 'Growth & Events',
+    description: 'Organizing events, reunions, and bringing more alumni on board.',
+  },
+  {
+    stage: 'III',
+    title: 'Digital Expansion',
+    description: 'Launching the online platform and mentorship programs.',
+  },
+].map((milestone, index) => (
+  <motion.div
+    key={index}
+    className={`relative md:flex items-center  ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+  >
+    {/* Desktop View */}
+    <div className={`hidden md:block w-1/2 ${index % 2 === 1 ? 'md:pr-8' : 'md:pl-8 md:order-last'}`}>
+      <div className={`bg-white p-6 rounded-lg shadow-soft ${index % 2 === 0 ? 'ml-8' : 'mr-8'}`}>
+        <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
+        <p className="text-gray-700">{milestone.description}</p>
+      </div>
+    </div>
+
+    {/* Stage Circle in Center Line */}
+    <div className="absolute h-8 w-8 rounded-full   bg-primary-600 border-4 border-white left-1/2 transform -translate-x-1/2 md:flex items-center justify-center hidden">
+      <span className="text-white font-bold text-xs text-center leading-tight">{milestone.stage}</span>
+    </div>
+
+    {/* Mobile View */}
+    <div className="md:hidden bg-white p-6 rounded-lg shadow-soft mb-6">
+      <div className="flex items-center mb-2">
+        <span className="bg-primary-600 text-white text-sm font-bold px-3 py-1 rounded-full mr-3">
+          {milestone.stage}
+        </span>
+        <h3 className="text-xl text-red-400 font-semibold">{milestone.title}</h3>
+      </div>
+      <p className="text-black-700">{milestone.description}</p>
+    </div>
+  </motion.div>
+))}
+
+        </div></div>
       </Section>
     </>
   );

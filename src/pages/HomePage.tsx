@@ -1,11 +1,10 @@
 import React from 'react';
-import { ArrowRight, Calendar, Users, BookOpen, Award, ChevronRight, Globe } from 'lucide-react';
+import { ArrowRight, Calendar, Users, BookOpen, Award, ChevronRight, Globe, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Section from '../components/common/Section';
 import { Card, CardContent } from '../components/common/Card';
 import Button from '../components/common/Button';
-import TeamPage from './TeamPage';
 
 const HomePage: React.FC = () => {
   return (
@@ -93,7 +92,27 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-        
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <motion.div 
+              className="w-1 h-3 bg-white rounded-full mt-2"
+              animate={{ 
+                y: [0, 15, 0],
+              }}
+              transition={{ 
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </div>
+        </motion.div>
       </section>
 
       {/* Features Section */}
@@ -248,15 +267,8 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </Section>
-          <TeamPage/>
-    </>
-  );
-};
 
-export default HomePage;
-
-/*
-      // Newsletter Section 
+      {/* Newsletter Section */}
       <Section className="bg-primary-900 text-white py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -285,41 +297,45 @@ export default HomePage;
           </div>
         </div>
       </Section>
-*/
-/*
-//call to action section
-<section className="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-20">
-<div className="container mx-auto px-4">
-  <div className="max-w-4xl mx-auto text-center">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}S
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <h2 className="text-4xl font-bold mb-6">Ready to Join Our Community?</h2>
-      <p className="text-xl mb-8 text-primary-100">
-        Become part of a growing network of successful professionals and make meaningful connections.
-      </p>
-      <div className="flex flex-wrap justify-center gap-4">
-        <Button 
-          variant="secondary" 
-          size="lg"
-          className="min-w-[200px]"
-          onClick={() => window.location.href = '/auth'}
-        >
-          Join Now
-        </Button>
-        <Button 
-          variant="outline" 
-          size="lg"
-          className="min-w-[200px] border-white text-white hover:bg-white/10"
-          onClick={() => window.location.href = '/contact'}
-        >
-          Contact Us
-        </Button>
-      </div>
-    </motion.div>
-  </div>
-</div>
-</section>*/
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-4xl font-bold mb-6">Ready to Join Our Community?</h2>
+              <p className="text-xl mb-8 text-primary-100">
+                Become part of a growing network of successful professionals and make meaningful connections.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  className="min-w-[200px]"
+                  onClick={() => window.location.href = '/auth'}
+                >
+                  Join Now
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="min-w-[200px] border-white text-white hover:bg-white/10"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Contact Us
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default HomePage;
