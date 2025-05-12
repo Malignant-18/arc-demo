@@ -19,9 +19,8 @@ const Header: React.FC = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
-
   return (
-    <header className="w-full">
+    <header className="w-full shadow-sm">
       {/* Top header with logo and login button */}
       <div className="bg-sky-100 py-3">
         <div className="container mx-auto px-4 md:px-6">

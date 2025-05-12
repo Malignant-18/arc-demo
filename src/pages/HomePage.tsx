@@ -8,9 +8,8 @@ import Button from '../components/common/Button';
 
 const HomePage: React.FC = () => {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <>      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden mt-0">
         {/* Background Image with Overlay */}
         <div 
           className="absolute inset-0 z-0"
