@@ -1,346 +1,178 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Users, BookOpen, Medal, ArrowRight } from 'lucide-react';
-import Section from '../components/common/Section';
-import { Card, CardContent } from '../components/common/Card';
-import Button from '../components/common/Button';
+import React, { useState } from 'react';
+import { Calendar, MapPin, Clock} from 'lucide-react';
+
+type EventItem = {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+  time: string;
+  category: 'alumni' | 'college' | 'workshop';
+  image: string;
+};
 
 const ActivitiesPage: React.FC = () => {
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="relative py-20 bg-secondary-700">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <motion.h1 
-              className="text-4xl md:text-5xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Activities & Events
-            </motion.h1>
-            <motion.p 
-              className="text-lg text-secondary-100"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Discover our various initiatives and upcoming events designed to strengthen our alumni community.
-            </motion.p>
-          </div>
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'alumni' | 'college'>('all');
+
+  const eventItems: EventItem[] = [
+    {
+      id: 1,
+      title: 'Alumni Netwonbjnrking Session',
+      date: 'June 15',
+      location: 'Main Auditorium',
+      time: '10 AM',
+      category: 'alumni',
+      image: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg',
+    }
+  ];
+
+  const filteredItems =
+    selectedCategory === 'all'
+      ? eventItems
+      : eventItems.filter((item) => item.category === selectedCategory);
+
+  return (<>
+      {/* Header Section with SVG Illustration */}
+    < section className=" px-4 bg-primary-100  md:flex  md:flex-row items-center justify-center md:min-h-[520px] min-h-[480px]"> 
+    <div className="absolute md:top-52 md:-left-32 top-72 -left-40 md:w-48 md:h-48  rounded-full bg-primary-175  md:opacity-60 opacity-80"></div>
+      <div className="absolute md:top-120 md:right-14  top-96 -right-16 md:w-32 md:h-32 rounded-full bg-primary-200 md:opacity-60 opacity-0"></div>
+      <div className="absolute md:top-52 md:right-120 top-40 right-8 md:w-16 md:h-16 rounded-full bg-primary-175 md:opacity-70 opacity-0 overflow-hidden"></div>
+        <div className=" text-center mb-8 pt-8 md:-pt-16">
+          <h2 className="text-3xl md:text-5xl text-primary-950 font-bold mb-4 mt-2">UPCOMING EVENTS</h2>
+          <p className="text-lg text-gray-700 ">
+            Connect, learn, and grow with our diverse range of events designed for students, 
+            alumni, and faculty members.
+          </p>
+        </div>
+        <div className="md:w-1/2 mt-12 md:mt-2 flex justify-center">
+          {/* This would be replaced with your actual SVG from unDraw */}
+          <img 
+            src="/assets/undraw_conference.svg" 
+            alt="Events illustration" 
+            className="md:w-80 max-w-md w-52"
+          />
         </div>
       </section>
 
-      {/* Upcoming Events Section */}
-      <Section 
-        title="Upcoming Events"
-        subtitle="Mark your calendars for these upcoming alumni events and activities."
-        className="bg-white"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {[
-            {
-              title: 'Annual Alumni Meet 2025',
-              date: 'March 15, 2025',
-              time: '10:00 AM - 5:00 PM',
-              location: 'MEC Campus, Thrikkakara',
-              description: 'Join us for a day of reconnection, networking, and celebration at our annual alumni gathering.',
-              image: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-            {
-              title: 'Career Development Workshop',
-              date: 'April 8, 2025',
-              time: '2:00 PM - 4:00 PM',
-              location: 'Virtual (Zoom)',
-              description: 'An interactive workshop focusing on career advancement strategies and industry trends.',
-              image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-            {
-              title: 'Industry-Academia Summit',
-              date: 'May 22, 2025',
-              time: '9:30 AM - 4:30 PM',
-              location: 'Le Meridien, Kochi',
-              description: 'A collaborative summit bringing together industry leaders and academic experts to discuss future trends.',
-              image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-            {
-              title: 'Alumni Entrepreneurship Panel',
-              date: 'June 10, 2025',
-              time: '5:00 PM - 7:00 PM',
-              location: 'Virtual (Zoom)',
-              description: 'Learn from successful alumni entrepreneurs as they share their journey and insights.',
-              image: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-            {
-              title: 'Batch of 2015: 10-Year Reunion',
-              date: 'July 18, 2025',
-              time: '6:00 PM - 10:00 PM',
-              location: 'Crown Plaza, Kochi',
-              description: 'A special reunion celebration for the batch that graduated in 2015.',
-              image: 'https://images.pexels.com/photos/7648013/pexels-photo-7648013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-            {
-              title: 'Tech Trends Webinar Series',
-              date: 'August 5-7, 2025',
-              time: '7:00 PM - 8:30 PM',
-              location: 'Virtual (Zoom)',
-              description: 'A three-day webinar series exploring the latest technology trends and their implications.',
-              image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            },
-          ].map((event, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full overflow-hidden hover:shadow-md transition-shadow group">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <CardContent>
-                  <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-                  <div className="text-gray-600 mb-4">
-                    <p className="mb-1">{event.date}</p>
-                    <p className="mb-1">{event.time}</p>
-                    <p>{event.location}</p>
-                  </div>
-                  <p className="text-gray-700 mb-4">{event.description}</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="text-primary-600 border-primary-600 hover:bg-primary-50"
-                  >
-                    Register
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Regular Programs Section */}
-      <Section 
-        title="Our Programs"
-        subtitle="Ongoing initiatives designed to strengthen our alumni community and support current students."
-        centered
-        className="bg-gray-50"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          {[
-            {
-              icon: <Medal className="text-primary-600" size={32} />,
-              title: 'Mentorship Program',
-              description: 'Our structured mentorship program connects experienced alumni with current students and recent graduates. Through this program, mentors provide guidance, share industry insights, and help mentees navigate their early career challenges.',
-              features: [
-                'One-on-one mentoring sessions',
-                'Career guidance and industry insights',
-                'Resume and interview preparation',
-                'Networking opportunities'
-              ],
-              cta: 'Become a Mentor'
-            },
-            {
-              icon: <BookOpen className="text-primary-600" size={32} />,
-              title: 'Distinguished Alumni Lecture Series',
-              description: 'This monthly lecture series features accomplished alumni from various fields who share their expertise, experiences, and insights with the college community. These sessions provide valuable learning opportunities and inspire current students.',
-              features: [
-                'Expert talks on cutting-edge topics',
-                'Industry trends and future outlook',
-                'Career journey and lessons learned',
-                'Q&A sessions with the speakers'
-              ],
-              cta: 'Propose a Lecture'
-            },
-            {
-              icon: <Users className="text-primary-600" size={32} />,
-              title: 'Alumni Chapters',
-              description: 'Our regional and international alumni chapters bring together MEC graduates living in specific geographic areas. These chapters organize local gatherings, networking events, and social activities to strengthen connections among alumni.',
-              features: [
-                'Regular meetups and social events',
-                'Professional networking opportunities',
-                'Community service initiatives',
-                'Regional cultural celebrations'
-              ],
-              cta: 'Find Your Chapter'
-            },
-            {
-              icon: <Calendar className="text-primary-600" size={32} />,
-              title: 'Industry Connect Program',
-              description: 'This program facilitates collaboration between the college and industry through our alumni network. It creates opportunities for internships, projects, and research partnerships that benefit both current students and participating companies.',
-              features: [
-                'Industry-sponsored projects',
-                'Internship opportunities',
-                'Campus recruitment drives',
-                'Research collaborations'
-              ],
-              cta: 'Partner With Us'
-            }
-          ].map((program, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    <div className="w-14 h-14 rounded-full bg-primary-50 flex items-center justify-center mr-4">
-                      {program.icon}
-                    </div>
-                    <h3 className="text-2xl font-semibold">{program.title}</h3>
-                  </div>
-                  <p className="text-gray-700 mb-6">{program.description}</p>
-                  <div className="mb-6">
-                    <h4 className="font-medium mb-2">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {program.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <ArrowRight size={16} className="text-primary-600 mt-1 mr-2 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    className="text-primary-600 border-primary-600 hover:bg-primary-50"
-                  >
-                    {program.cta}
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Past Events Gallery Section */}
-      <Section 
-        title="Past Events Gallery"
-        subtitle="Highlights from our recent alumni events and gatherings."
-        className="bg-white"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-          {[
-            {
-              title: 'Annual Alumni Meet 2024',
-              image: 'https://images.pexels.com/photos/1708936/pexels-photo-1708936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Tech Symposium 2024',
-              image: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Leadership Workshop',
-              image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Batch of 2014 Reunion',
-              image: 'https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Alumni Sports Day',
-              image: 'https://images.pexels.com/photos/3760524/pexels-photo-3760524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Industry Panel Discussion',
-              image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Career Fair 2024',
-              image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            },
-            {
-              title: 'Global Alumni Summit',
-              image: 'https://images.pexels.com/photos/7516363/pexels-photo-7516363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            }
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-lg"
-            >
-              <div className="aspect-square">
-                <img 
-                  src={item.image} 
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-4">
-                  <h3 className="text-white font-medium">{item.title}</h3>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
-            View Full Gallery
-          </Button>
-        </div>
-      </Section>
-
-      {/* Get Involved Section */}
-      <Section className="bg-primary-700 text-white">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+      {/* Category Filter */}
+      <section className="flex flex-wrap justify-center gap-2 md:gap-8  mt-16 mb-12">
+        {(['all', 'alumni', 'college'] as const).map((category) => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`px-6 py-2 rounded-full transition ${
+              selectedCategory === category
+                ? 'bg-primary-600 text-white'
+                : 'bg-primary-100 text-primary-800 hover:bg-primary-200'
+            }`}
           >
-            Get Involved
-          </motion.h2>
-          <motion.p
-            className="text-lg text-primary-100 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            There are many ways you can contribute to our alumni community. Whether you want to volunteer, share your expertise, or propose an event, we welcome your involvement.
-          </motion.p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <Button 
-              variant="secondary" 
-              size="lg"
-            >
-              Volunteer With Us
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-white text-white hover:bg-white/10"
-            >
-              Propose an Event
-            </Button>
-          </motion.div>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </button>
+        ))}
+      </section>
+
+      {/* Events Grid */}
+      {filteredItems.length === 0 ? (
+        <div className="text-center text-gray-500 text-lg py-10">
+          <div className="flex justify-center mb-4">
+            {/* This would be replaced with your empty state SVG from unDraw */}
+            <img 
+              src="/assets/undraw_no_data.svg" 
+              alt="No events" 
+              className="md:w-36 w-20"
+            />
+          </div>
+          <p>No events available in this category yet. <br/>Stay tuned!</p>
         </div>
-      </Section>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-6 md:my-8">
+  {filteredItems.map((item) => (
+    <div
+      key={item.id}
+      className="w-full max-w-[570px] bg-primary-100  md:rounded-md  p-6 z-10"
+    >
+
+      <div className="flex justify-between items-center mb-4 w-full">
+        <h3 className="font-bold text-lg text-primary-900">Featured Event</h3>
+        <div className="bg-primary-100 p-2 rounded-full ">
+          <Clock size={16} className="text-primary-900" />
+        </div>
+      </div>
+      <div className="w-full h-60 rounded-lg mb-9 md:mb-3 md:flex items-center justify-start gap-12">
+        <img 
+        src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
+        alt="Events illustration" 
+        className="max-w-full max-h-full rounded-lg object-cover"
+        />
+        <div className ="flex md:flex-col flex-row mt-4 md:-mt-2 gap-4">
+          <div className="flex items-center">
+            <Calendar size={16} className="text-primary-900" />
+            <p className="text-sm text-gray-600 ml-2">{item.date}</p>
+          </div>
+          <div className="flex items-center">
+            <Clock size={16} className="text-primary-900" />
+            <p className="text-sm text-gray-600 ml-2">{item.time}</p>
+          </div>
+        </div>
+      </div>
+      <p className="text-3xl font-semibold text-primary-900">Official Launch</p>
+      <div className="mt-2 font-medium flex items-center">
+            <MapPin size={16} className="text-primary-900" />
+            <p className="text-sm text-gray-600 ml-2">{item.location}</p>
+          </div>
+  </div>
+  ))}
+</div>
+
+      )}
+      
+     
     </>
   );
 };
 
 export default ActivitiesPage;
+
+
+/*
+<button className="w-full py-2 bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200 transition-colors font-medium">
+                  Register Now
+                </button>
+                
+                
+                
+                ,
+    {
+      id: 2,
+      title: 'Career Guidance Workshop',
+      date: 'June 22, 2025',
+      location: 'Seminar Hall',
+      time: '2:00 PM - 5:00 PM',
+      category: 'alumni',
+      image: 'https://images.pexels.com/photos/7647913/pexels-photo-7647913.jpeg',
+      attendees: 85
+    },
+    {
+      id: 3,
+      title: 'Annual College Day',
+      date: 'July 10, 2025',
+      location: 'College Ground',
+      time: '9:00 AM - 4:00 PM',
+      category: 'college',
+      image: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg',
+      attendees: 500
+    },
+    {
+      id: 4,
+      title: 'Industry Connect Session',
+      date: 'July 18, 2025',
+      location: 'Conference Hall',
+      time: '11:00 AM - 1:00 PM',
+      category: 'alumni',
+      image: 'https://images.pexels.com/photos/1181435/pexels-photo-1181435.jpeg',
+      attendees: 95
+    },
+                
+    
+    <div className="w-full h-60 rounded-lg mb-9 md:mb-3 flex flex-col md:flex-row md:items-center  justify-center md:justify-start gap-12">
+    */

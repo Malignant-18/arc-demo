@@ -7,6 +7,9 @@ export default {
         primary: {
           50: '#f0fdfa',
           100: '#ccfbf1',
+          125: '#bff9ee',
+          150: '#b2f8ea',
+          175: '#a5f7e7',
           200: '#99f6e4',
           300: '#5eead4',
           400: '#2dd4bf',
@@ -49,7 +52,7 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
       },
       boxShadow: {
-        soft: '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
+        soft: '0 2px 15px 0 rgba(1, 15, 7, 0.05)',
       }
     },
   },

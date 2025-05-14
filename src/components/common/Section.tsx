@@ -22,11 +22,11 @@ const Section: React.FC<SectionProps> = ({
   return (
     <section
       id={id}
-      className={cn('py-16 md:py-20', className)}
+      className={cn('py-16 md:py-20 ', className)}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto pt-12 px-4">
         {(title || subtitle) && (
-          <div className={cn('mb-12', centered && 'text-center')}>
+          <div className={cn('mb-12 text-center')}>
             {title && (
               <motion.h2 
                 className="text-3xl md:text-4xl font-bold mb-4"

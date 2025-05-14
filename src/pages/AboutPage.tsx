@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Users, BookOpen, Globe } from 'lucide-react';
+import { Target, Globe } from 'lucide-react';
 import Section from '../components/common/Section';
 
 const AboutPage: React.FC = () => {
@@ -99,54 +99,6 @@ const AboutPage: React.FC = () => {
               To create a global network of Model Engineering College alumni who are empowered to contribute to the development of the institution, support fellow graduates, and make a positive impact on society.
             </p>
           </motion.div>
-        </div>
-      </Section>
-
-      {/* Core Values */}
-      <Section 
-        title="Our Core Values"
-        subtitle="The principles that guide our initiatives and relationships within the alumni community."
-        centered
-        className="bg-white"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {[
-            { 
-              icon: <Users className="text-primary-600" size={24} />,
-              title: 'Community',
-              description: 'Building a supportive and inclusive network that fosters meaningful connections among alumni.',
-            },
-            { 
-              icon: <BookOpen className="text-primary-600" size={24} />,
-              title: 'Knowledge Sharing',
-              description: 'Facilitating the exchange of ideas, expertise, and experiences to promote continuous learning.',
-            },
-            { 
-              icon: <Target className="text-primary-600" size={24} />,
-              title: 'Excellence',
-              description: 'Striving for the highest standards in all our initiatives and encouraging alumni to pursue excellence.',
-            },
-            { 
-              icon: <Globe className="text-primary-600" size={24} />,
-              title: 'Global Perspective',
-              description: 'Embracing diversity and cultivating a global mindset among our alumni community.',
-            },
-          ].map((value, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-gray-50 p-6 rounded-lg"
-            >
-              <div className="w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center mb-4">
-                {value.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-              <p className="text-gray-700">{value.description}</p>
-            </motion.div>
-          ))}
         </div>
       </Section>
 

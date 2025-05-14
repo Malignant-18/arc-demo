@@ -5,7 +5,6 @@ import {
   Linkedin,
   Twitter,
   Mail,
-  MapPin,
   Phone,
   Globe,
 } from 'lucide-react';
@@ -13,11 +12,11 @@ import {
 const Footer: React.FC = () => {
   return (
     <footer className="bg-primary-900 text-gray-400">
-      <div className="container px-8 py-12 md:py-16 ">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="container px-8 py-8 md:py-12 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* 1. Cell Name & Logo */}
-          <div className="flex items-start gap-3">
+          <div className="flex items-start px-12 md:px-8 gap-3">
             <Globe className="text-primary-400" size={28} />
             <h3 className="text-lg font-bold text-white leading-snug">
               ALUMNI<br /> RELATIONS <br />CELL
@@ -26,18 +25,10 @@ const Footer: React.FC = () => {
 
           {/* 2. Location + Contact Details */}
           <div className="space-y-4">
-            {/* Location */}
-            <div className="flex items-start gap-3 md:px-8">
-              <MapPin size={18} className="text-primary-400 mt-1 flex-shrink-0" />
-              <span className="text-gray-400 leading-snug">
-                Govt. Model Engineering College<br/>
-                Thrikkakara, Kochi<br />
-                Kerala, India<br />
-              </span>
-            </div>
+            
 
             {/* Phone & Email */}
-            <div className="flex flex-col gap-3 md:px-8">
+            <div className="flex flex-col  gap-3 px-12 md:px-8">
               <div className="flex items-center gap-3">
                 <Phone size={18} className="text-primary-400 flex-shrink-0" />
                 <a href="tel:+91-484-2575370" className="hover:text-primary-400 transition-colors">
@@ -54,7 +45,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* 3. Social Profiles */}
-          <div className="flex justify-center md:justify-end items-start  space-x-4">
+          <div className="flex justify-center items-start  space-x-4">
             <a href="#" className="hover:text-primary-400 transition-colors">
               <Facebook size={20} />
             </a>
