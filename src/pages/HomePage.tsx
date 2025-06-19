@@ -4,11 +4,18 @@ import { motion } from 'framer-motion';
 import Section from '../components/common/Section';
 import Button from '../components/common/Button';
 import { ArrowRight } from 'lucide-react';
+import SEO from '../components/common/SEO';
+
 const HomePage: React.FC = () => {
   
-
   return (
     <>
+   <SEO 
+   title='Alumni Relations Cell, MEC'
+    description='Connecting MEC alumni with current students and the college community through mentorship, career guidance,
+  and collaborative opportunities.'
+  url= 'https://arc-demo.vercel.app/'
+  />
       {/* Hero & Launch CTA */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div

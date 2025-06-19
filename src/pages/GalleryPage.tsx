@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/common/SEO';
 
 type GalleryItem = {
   id: number;
@@ -38,8 +39,13 @@ const GalleryPage: React.FC = () => {
       ? galleryItems
       : galleryItems.filter((item) => item.category === selectedCategory);
 
-  return (
-    <motion.div
+  return (<>
+  <SEO
+    title="Gallery - Alumni Relations Cell, MEC"
+    description="Explore the moments and milestones of the Alumni Relations Cell at Model Engineering College."
+    url="https://arc-demo.vercel.app/gallery"
+    />
+        <motion.div
       className="py-12 px-4 max-w-7xl mx-auto bg-gray-100 min-h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -118,6 +124,7 @@ const GalleryPage: React.FC = () => {
         </motion.div>
       )}
     </motion.div>
+    </>
   );
 };
 

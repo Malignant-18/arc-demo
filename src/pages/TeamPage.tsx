@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Linkedin } from 'lucide-react';
 import Section from '../components/common/Section';
 import { Card } from '../components/common/Card';
-
+import SEO from '../components/common/SEO';
 interface TeamMember {
   name: string;
   role: string;
@@ -12,13 +12,14 @@ interface TeamMember {
   linkedin?: string;
 }
 
-const Incharge : TeamMember={
-	name: 'Rahul Sharma',
-	role: 'Student Coordinator',
-	image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        email: 'rahul.s2023@mec.ac.in',
-        linkedin: '#',
+const Coordinator: TeamMember = {
+  name: 'Dr.Minsfdsdi ',
+  role: 'sfgsdfgsfdgsdfgsf',
+  image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  email: 'rahul.s2023@mec.ac.in',
+  linkedin: '#',
 }
+
 const studentCoordinators: TeamMember[] = [
   {
     name: 'Rahul Sharma',
@@ -30,33 +31,32 @@ const studentCoordinators: TeamMember[] = [
   {
     name: 'Aiswwha Khan',
     role: 'Student Coordinator',
-    image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     email: 'aisha.k2024@mec.ac.in',
     linkedin: '#',
   },
   {
     name: 'Vignesh Menon',
     role: 'Technical Coordinator',
-    image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     email: 'vignesh.m2023@mec.ac.in',
     linkedin: '#',
   },
   {
     name: 'Meera Suresh',
     role: 'Creative Coordinator',
-    image: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     email: 'meera.s2024@mec.ac.in',
     linkedin: '#',
   },
   {
     name: 'Jenssna Khan',
     role: 'Student Coordinator',
-    image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     email: 'aisha.k2024@mec.ac.in',
     linkedin: '#',
   },
 ];
-
 const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ member, index }) => {
   return (
     <motion.div
@@ -91,10 +91,16 @@ const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ membe
 };
 
 const TeamPage: React.FC = () => {
-const ind =1;
   return (
     <>
-      {/* Student Coordinators Section */}
+
+      <SEO
+        title="Alumni Relations Cell, MEC - Our Team"
+        description="Meet the dedicated individuals who work behind the scenes to strengthen our alumni community."
+        url="https://arc-demo.vercel.app/team"
+      />
+        {/* Student Coordinators Section */}
+
       <Section 
         title="OUR TEAM"
         subtitle="Meet the dedicated individuals who work behind the scenes to strengthen our alumni community."
@@ -107,12 +113,35 @@ const ind =1;
         </div>
       </Section>
       <Section 
-        title="STAFF IN-CHARGE"
+        title="FACULTY COORDINATOR"
         subtitle=""
         className="bg-primary-50 text-primary-800 pt-12"
       >
-        <TeamMemberCard key={ind} member={Incharge} index={ind} />
-        </Section>
+        <div className="flex justify-center">
+          <Card className="h-120 w-60 overflow-hidden group hover:shadow-md transition-shadow bg-white">
+        <div className="aspect-square overflow-hidden">
+          <img 
+            src={Coordinator.image} 
+            alt={Coordinator.name}
+            className="w-60 h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <div className="p-6">
+          <h3 className="text-xl font-semibold mb-1 text-center">{Coordinator.name}</h3>
+          <p className="text-primary-600 font-medium mb-3 text-center">{Coordinator.role}</p>
+          <div className="flex justify-center gap-12">
+            <a href={Coordinator.linkedin} className="p-2 text-gray-600 hover:text-primary-600 transition-colors">
+          <Linkedin size={18} />
+            </a>
+            <a href={Coordinator.email} className="p-2 text-gray-600 hover:text-primary-600 transition-colors">
+          <Mail size={18} />
+            </a>
+          </div>
+        </div>
+          </Card>
+          
+        </div>
+      </Section>
     </>
   );
 };

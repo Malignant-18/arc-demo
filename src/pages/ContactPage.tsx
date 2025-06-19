@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle  , Linkedin , Instagram} from 'lucide-react';
 import Button from '../components/common/Button';
-
+import SEO from '../components/common/SEO';
 const ContactPage: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -28,6 +28,10 @@ const ContactPage: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
+      <SEO
+        title="Contact Us - Alumni Relations Cell, MEC"
+        description="We'd love to hear from you! Whether you have questions, feedback, or ideas, reach out to us."
+        url="https://arc-demo.vercel.app/contact" />
       <section className="relative py-20 bg-primary-100 text-white text-center">
         <motion.div
           className="container mx-auto  max-w-3xl"

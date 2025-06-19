@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, Clock} from 'lucide-react';
-
+import SEO from '../components/common/SEO';
 type EventItem = {
   id: number;
   title: string;
@@ -32,6 +32,10 @@ const ActivitiesPage: React.FC = () => {
       : eventItems.filter((item) => item.category === selectedCategory);
 
   return (<>
+  <SEO
+    title="Activities - Alumni Relations Cell, MEC"
+    description="Explore the upcoming events and activities organized by the Alumni Relations Cell at Model Engineering College"
+    url='https://arc-demo.vercel.app/activities'/>
       {/* Header Section with SVG Illustration */}
     < section className=" px-4 bg-primary-100  md:flex  md:flex-row items-center justify-center md:min-h-[520px] min-h-[480px]"> 
     <div className="absolute md:top-52 md:-left-32 top-72 -left-40 md:w-48 md:h-48  rounded-full bg-primary-175  md:opacity-60 opacity-80"></div>
